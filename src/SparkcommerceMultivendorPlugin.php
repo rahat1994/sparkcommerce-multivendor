@@ -1,15 +1,15 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace Rahat1994\SparkcommerceMultivendor;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
-class SkeletonPlugin implements Plugin
+class SparkcommerceMultivendorPlugin implements Plugin
 {
     public function getId(): string
     {
-        return 'skeleton';
+        return 'sparkcommerce-multivendor';
     }
 
     public function register(Panel $panel): void
