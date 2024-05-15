@@ -10,11 +10,11 @@ use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
 use Livewire\Features\SupportTesting\Testable;
+use Rahat1994\SparkcommerceMultivendor\Commands\SparkcommerceMultivendorCommand;
+use Rahat1994\SparkcommerceMultivendor\Testing\TestsSparkcommerceMultivendor;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Rahat1994\SparkcommerceMultivendor\Commands\SparkcommerceMultivendorCommand;
-use Rahat1994\SparkcommerceMultivendor\Testing\TestsSparkcommerceMultivendor;
 
 class SparkcommerceMultivendorServiceProvider extends PackageServiceProvider
 {
