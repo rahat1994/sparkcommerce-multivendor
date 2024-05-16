@@ -7,8 +7,8 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Rahat1994\SparkcommerceMultivendor\Models\SCMVVendorRequest;
 use Rahat1994\SparkcommerceMultivendor\Filament\Resources\VendorRequestResource\Pages;
+use Rahat1994\SparkcommerceMultivendor\Models\SCMVVendorRequest;
 
 class VendorRequestResource extends Resource
 {
@@ -53,7 +53,7 @@ class VendorRequestResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->formatStateUsing(fn (string $state): string => $state)
+                    ->formatStateUsing(fn (string $state): string => $state),
             ])
             ->filters([
                 //
