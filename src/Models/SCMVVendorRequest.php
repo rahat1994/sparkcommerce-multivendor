@@ -4,7 +4,7 @@ namespace Rahat1994\SparkcommerceMultivendor\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SCMVVendor extends Model
+class SCMVVendorRequest extends Model
 {
     protected $fillable = ['name', 'email', 'meta', 'user_id'];
 
