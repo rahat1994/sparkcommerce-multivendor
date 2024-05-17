@@ -21,7 +21,7 @@ class SparkcommerceMultivendorPlugin implements Plugin
         $panel->resources([
             VendorRequestResource::class,
             SupportTicketResource::class,
-            PayoutRequestResource::class
+            PayoutRequestResource::class,
             // CategoryResource::class,
             // TagResource::class,
             // ReviewResource::class,
