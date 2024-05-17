@@ -7,36 +7,36 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Rahat1994\SparkcommerceMultivendor\Filament\Resources\VendorRequestResource\Pages;
-use Rahat1994\SparkcommerceMultivendor\Models\SCMVVendorRequest;
+use Rahat1994\SparkcommerceMultivendor\Filament\Resources\SupportTicketResource\Pages;
+use Rahat1994\SparkcommerceMultivendor\Models\SCMVSupportTicket;
 
-class VendorRequestResource extends Resource
+class SupportTicketResource extends Resource
 {
-    protected static ?string $model = SCMVVendorRequest::class;
+    protected static ?string $model = SCMVSupportTicket::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
 
     public static function getModelLabel(): string
     {
-        return __('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.vendor_request.model_label');
+        return __('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.support_ticket.model_label');
         // return __('filament-user-activity::user-activity.resource.model_label');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.vendor_request.model_plural_label');
+        return __('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.support_ticket.model_plural_label');
         // return __('filament-user-activity::user-activity.resource.model_plural_label');
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return __('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.vendor_request.navigation_group');
+        return __('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.support_ticket.navigation_group');
         // return __('filament-user-activity::user-activity.resource.navigation');
     }
 
     public static function getNavigationLabel(): string
     {
-        return __('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.vendor_request.navigation');
+        return __('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.support_ticket.navigation');
         // return __('filament-user-activity::user-activity.resource.navigation');
     }
 
@@ -78,9 +78,9 @@ class VendorRequestResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListVendorRequest::route('/'),
-            'create' => Pages\CreateVendorRequest::route('/create'),
-            'edit' => Pages\EditVendorRequest::route('/{record}/edit'),
+            'index' => Pages\ListSupportTicket::route('/'),
+            'create' => Pages\CreateSupportTicket::route('/create'),
+            'edit' => Pages\EditSupportTicket::route('/{record}/edit'),
         ];
     }
 }

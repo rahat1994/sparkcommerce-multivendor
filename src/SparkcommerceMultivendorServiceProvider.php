@@ -148,7 +148,9 @@ class SparkcommerceMultivendorServiceProvider extends PackageServiceProvider
     protected function getMigrations(): array
     {
         return [
-            'create_sparkcommerce-multivendor_table',
+            'create_sc_mv_vendors_table',
+            'create_sc_mv_vendor_requests_table',
+            'create_sc_mv_vendor_users_table'
         ];
     }
 }

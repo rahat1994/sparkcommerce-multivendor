@@ -4,6 +4,8 @@ namespace Rahat1994\SparkcommerceMultivendor;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
+use Rahat1994\SparkcommerceMultivendor\Filament\Resources\PayoutRequestResource;
+use Rahat1994\SparkcommerceMultivendor\Filament\Resources\SupportTicketResource;
 use Rahat1994\SparkcommerceMultivendor\Filament\Resources\VendorRequestResource;
 
 class SparkcommerceMultivendorPlugin implements Plugin
@@ -15,8 +17,11 @@ class SparkcommerceMultivendorPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
+        // dd("Hello");
         $panel->resources([
             VendorRequestResource::class,
+            SupportTicketResource::class,
+            PayoutRequestResource::class
             // CategoryResource::class,
             // TagResource::class,
             // ReviewResource::class,
