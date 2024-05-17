@@ -105,5 +105,39 @@ return [
 
             ],
         ],
+        'vendor' => [
+            'model_label' => 'Vendor',
+            'icon' => 'heroicon-o-rectangle-stack',
+            'model_plural_label' => 'Vendors',
+            'navigation_group' => 'Multi Vendor',
+            'navigation' => 'Vendors',
+            'creation_form' => [
+                'product_name' => 'Product Name',
+                'description' => 'Description',
+                'sku' => 'SKU',
+                'product_dimension' => [
+                    'fieldset_name' => 'Product Dimensions',
+                    'height' => 'Height',
+                    'weight' => 'Weight',
+                    'width' => 'Width',
+                    'length' => 'Length',
+                ],
+                'tabs_section' => [
+                    'tabs' => [
+                        'inventory' => 'Inventory',
+                        'linked_products' => 'Linked Products',
+                        'pricing' => 'Pricing',
+                        'shipping' => 'Shipping',
+                        'product_dimension' => 'Product Dimensions',
+                        'attributes' => 'Attributes',
+                        'variations' => 'Variations',
+                        'advanced' => 'Advanced',
+                        'more_option' => 'More Options',
+                    ],
+
+                ],
+
+            ],
+        ],
     ],
 ];

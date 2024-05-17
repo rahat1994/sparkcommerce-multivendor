@@ -7,6 +7,7 @@ use Filament\Panel;
 use Rahat1994\SparkcommerceMultivendor\Filament\Resources\PayoutRequestResource;
 use Rahat1994\SparkcommerceMultivendor\Filament\Resources\SupportTicketResource;
 use Rahat1994\SparkcommerceMultivendor\Filament\Resources\VendorRequestResource;
+use Rahat1994\SparkcommerceMultivendor\Filament\Resources\VendorResource;
 
 class SparkcommerceMultivendorPlugin implements Plugin
 {
@@ -19,9 +20,10 @@ class SparkcommerceMultivendorPlugin implements Plugin
     {
         // dd("Hello");
         $panel->resources([
-            VendorRequestResource::class,
+            VendorResource::class,
             SupportTicketResource::class,
             PayoutRequestResource::class,
+            VendorRequestResource::class,
             // CategoryResource::class,
             // TagResource::class,
             // ReviewResource::class,
