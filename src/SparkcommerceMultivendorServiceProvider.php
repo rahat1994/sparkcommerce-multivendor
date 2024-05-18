@@ -151,6 +151,8 @@ class SparkcommerceMultivendorServiceProvider extends PackageServiceProvider
             'create_sc_mv_vendors_table',
             'create_sc_mv_vendor_requests_table',
             'create_sc_mv_vendor_users_table',
+            'create_sc_mv_support_tickets_table',
+            'create_sc_mv_payout_requests_table',
         ];
     }
 }
