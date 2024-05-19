@@ -11,10 +11,23 @@ This is where your description should go. Limit it to a paragraph or two. Consid
 
 ## Installation
 
-You can install the package via composer:
+1. You can install the package via composer:
 
 ```bash
 composer require rahat1994/sparkcommerce-multivendor
+```
+
+2. Add the Spatie\Permission\Traits\HasRoles trait to your User model(s):
+
+```use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
+ 
+class User extends Authenticatable
+{
+    use HasRoles;
+ 
+    // ...
+}
 ```
 
 You can publish and run the migrations with:
