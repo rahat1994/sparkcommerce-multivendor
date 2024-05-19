@@ -3,7 +3,6 @@
 namespace Rahat1994\SparkcommerceMultivendor\Commands;
 
 use Illuminate\Console\Command;
-use Rahat1994\SparkcommerceMultivendor\Facades\SparkcommerceMultivendor;
 use Rahat1994\SparkcommerceMultivendor\SparkcommerceMultivendorServiceProvider;
 use Spatie\Permission\PermissionServiceProvider;
 

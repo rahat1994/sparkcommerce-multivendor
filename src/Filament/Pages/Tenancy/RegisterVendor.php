@@ -2,10 +2,10 @@
 
 namespace Rahat1994\SparkcommerceMultivendor\Filament\Pages\Tenancy;
 
-use Rahat1994\SparkcommerceMultivendor\Models\SCMVVendor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\Tenancy\RegisterTenant;
+use Rahat1994\SparkcommerceMultivendor\Models\SCMVVendor;
 
 class RegisterVendor extends RegisterTenant
 {
