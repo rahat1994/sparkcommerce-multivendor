@@ -17,6 +17,11 @@ class SparkcommerceMultivendorPlugin implements Plugin
 {
     protected PanelType $panelType = PanelType::Admin;
 
+    final public function __construct(PanelType $panelType)
+    {
+        $this->panelType($panelType);
+    }
+
     public function getId(): string
     {
         return 'sparkcommerce-multivendor';
@@ -27,7 +32,7 @@ class SparkcommerceMultivendorPlugin implements Plugin
         return $this->panelType;
     }
 
-    public function setPanelType(PanelType $panelType): static
+    public function panelType(PanelType $panelType): static
     {
         $this->panelType = $panelType;
 
@@ -36,19 +41,24 @@ class SparkcommerceMultivendorPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
+        $this->getUserSpecificPanel($panel)
+            ->authMiddleware([
+                AuthMiddleware::class
+            ]);
+    }
+
+    public function getUserSpecificPanel(Panel $panel): Panel
+    {
         if ($this->panelType === PanelType::Admin) {
-            $panel->resources(
+            return $panel->resources(
                 $this->getResources()
             );
         } else {
-            $panel->resources(
+            return $panel->resources(
                 $this->getResources()
             )
                 ->tenant(SCMVVendor::class, slugAttribute: 'slug')
-                ->tenantRegistration(RegisterVendor::class)
-                ->authMiddleware([
-                    AuthMiddleware::class
-                ]);
+                ->tenantRegistration(RegisterVendor::class);
         }
     }
 
@@ -72,9 +82,12 @@ class SparkcommerceMultivendorPlugin implements Plugin
     {
     }
 
-    public static function make(): static
+    public static function make(PanelType $panelType = PanelType::Admin): static
     {
-        return app(static::class);
+        $static =  app(static::class, ['panelType' => $panelType]);
+        // $static->confiure();
+
+        return $static;
     }
 
     public static function get(): static
