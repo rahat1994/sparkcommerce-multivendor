@@ -12,7 +12,7 @@ trait HasVendors
 {
     public function vendors(): BelongsToMany
     {
-        return $this->BelongsToMany(SCMVVendor::class, strval(config("sparkcommerce-multivendor.table_prefix")) . 'user_vendor', 'user_id', 'vendor_id');
+        return $this->BelongsToMany(SCMVVendor::class, strval(config('sparkcommerce-multivendor.table_prefix')) . 'user_vendor', 'user_id', 'vendor_id');
     }
 
     public function getTenants(Panel $panel): Collection

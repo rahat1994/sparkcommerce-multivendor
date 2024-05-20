@@ -58,11 +58,12 @@ class SparkcommerceMultivendorPlugin implements Plugin
                 $this->getResources()
             )
                 ->tenant(SCMVVendor::class, slugAttribute: 'slug')
-                ->tenantRegistration(RegisterVendor::class);
+                ->tenantRegistration(RegisterVendor::class)
+                ->authMiddleware([
+                    AuthMiddleware::class,
+                ]);
         }
     }
-
-
 
     protected function getResources(): array
     {
@@ -72,9 +73,10 @@ class SparkcommerceMultivendorPlugin implements Plugin
                 VendorResource::class,
                 VendorRequestResource::class,
                 PayoutRequestResource::class,
-                SupportTicketResource::class
+                SupportTicketResource::class,
             ];
         }
+
         return [];
     }
 

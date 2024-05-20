@@ -4,8 +4,8 @@ namespace Rahat1994\SparkcommerceMultivendor\Http\Middleware;
 
 use Filament\Facades\Filament;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
-use Rahat1994\SparkcommerceMultivendor\Enums\PanelType;
 use Rahat1994\SparkcommerceMultivendor\SparkcommerceMultivendorPlugin;
+use Rahat1994\SparkcommerceMultivendor\Enums\PanelType;
 
 class AuthMiddleware extends Middleware
 {
