@@ -2,7 +2,9 @@
 
 namespace Rahat1994\SparkcommerceMultivendor;
 
+
 use Filament\Contracts\Plugin;
+use Filament\Http\Middleware\Authenticate;
 use Filament\Panel;
 use Rahat1994\SparkcommerceMultivendor\Enums\PanelType;
 use Rahat1994\SparkcommerceMultivendor\Filament\Pages\Tenancy\RegisterVendor;
@@ -43,6 +45,7 @@ class SparkcommerceMultivendorPlugin implements Plugin
     {
         $this->getUserSpecificPanel($panel)
             ->authMiddleware([
+                Authenticate::class,
                 AuthMiddleware::class
             ]);
     }
@@ -58,10 +61,7 @@ class SparkcommerceMultivendorPlugin implements Plugin
                 $this->getResources()
             )
                 ->tenant(SCMVVendor::class, slugAttribute: 'slug')
-                ->tenantRegistration(RegisterVendor::class)
-                ->authMiddleware([
-                    AuthMiddleware::class,
-                ]);
+                ->tenantRegistration(RegisterVendor::class);
         }
     }
 
