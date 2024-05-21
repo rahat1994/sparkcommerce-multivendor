@@ -2,7 +2,6 @@
 
 namespace Rahat1994\SparkcommerceMultivendor;
 
-
 use Filament\Contracts\Plugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Panel;
@@ -46,7 +45,7 @@ class SparkcommerceMultivendorPlugin implements Plugin
         $this->getUserSpecificPanel($panel)
             ->authMiddleware([
                 Authenticate::class,
-                AuthMiddleware::class
+                AuthMiddleware::class,
             ]);
     }
 
