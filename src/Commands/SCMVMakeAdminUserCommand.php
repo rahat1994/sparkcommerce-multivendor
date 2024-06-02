@@ -88,6 +88,9 @@ class SCMVMakeAdminUserCommand extends Command
 
         $adminRoleLabel = config('sparkcommerce-multivendor.admin_role');
 
+        // TODO: Check if roles have been published
+        // TODO: [Documentation] Add a note about publishing roles.
+
         if (Role::where('name', $adminRoleLabel)->first() === null) {
             $this->error('Roles have not been published yet: php artisan scmv:publish-roles');
             return static::INVALID;
