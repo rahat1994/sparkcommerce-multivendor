@@ -11,6 +11,7 @@ use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
 use Livewire\Features\SupportTesting\Testable;
 use Rahat1994\SparkcommerceMultivendor\Commands\SCMVMakeAdminUserCommand;
+use Rahat1994\SparkcommerceMultivendor\Commands\SCMVPublishRolesCommand;
 use Rahat1994\SparkcommerceMultivendor\Commands\SparkcommerceMultivendorPublishMigrationsCommand;
 use Rahat1994\SparkcommerceMultivendor\Testing\TestsSparkcommerceMultivendor;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
@@ -117,6 +118,7 @@ class SparkcommerceMultivendorServiceProvider extends PackageServiceProvider
         return [
             SparkcommerceMultivendorPublishMigrationsCommand::class,
             SCMVMakeAdminUserCommand::class,
+            SCMVPublishRolesCommand::class,
         ];
     }
 

@@ -50,7 +50,7 @@ return [
         'edit_vendor_order_shipping' => 'Edit Vendor Order Shipping',
         'delete_vendor_order_shipping' => 'Delete Vendor Order Shipping',
     ],
-    'vendor_permissions' => [
+    'vendor_owner_permissions' => [
         'view_own_vendor_profile' => 'View own vendor profile',
         'edit_own_vendor_profile' => 'Edit own vendor profile',
         'view_own_vendor_product' => 'View Own Vendor Product',

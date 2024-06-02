@@ -20,18 +20,35 @@ class SCMVPublishRolesCommand extends Command
         $vendorOwnerRole = config('sparkcommerce-multivendor.vendor_owner_role');
         $vendorManagerRole = config('sparkcommerce-multivendor.vendor_manager_role');
         $customerRole = config('sparkcommerce-multivendor.customer_role');
+
+        $this->publishAdminPermissionsAndRole();
+        $this->publishVendorOwnerPermissionsAndRole();
     }
 
-    protected function publishAdminPermissionAndRole()
+    protected function publishVendorOwnerPermissionsAndRole()
+    {
+        $vendorOwnerRole = config('sparkcommerce-multivendor.vendor_owner_role');
+        $vendorOwnerPermissions = config('sparkcommerce-multivendor.vendor_owner_permissions');
+
+        collect($vendorOwnerPermissions)->each(function ($permissionName, $permissionLabel) {
+            Permission::firstOrCreate(['name' => $permissionLabel]);
+        });
+
+        $role = Role::firstOrCreate(['name' => $vendorOwnerRole]);
+        $role->syncPermissions($vendorOwnerPermissions);
+    }
+
+    protected function publishAdminPermissionsAndRole()
     {
         $adminRole = config('sparkcommerce-multivendor.admin_role');
         $adminPermissions = config('sparkcommerce-multivendor.admin_permissions');
 
         collect($adminPermissions)->each(function ($permissionName, $permissionLabel) {
-            Permission::firstOrCreate(['name' => $permissionName, 'label' => $permissionLabel]);
+            Permission::firstOrCreate(['name' => $permissionLabel]);
         });
+        // dd($adminRole);
 
         $role = Role::firstOrCreate(['name' => $adminRole]);
-        $role->syncPermissions($adminPermissions);
+        $role->syncPermissions(array_keys($adminPermissions));
     }
 }
