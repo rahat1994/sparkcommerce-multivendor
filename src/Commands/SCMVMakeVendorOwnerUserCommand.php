@@ -10,7 +10,6 @@ use Symfony\Component\Console\Attribute\AsCommand;
 #[AsCommand(name: 'make:scmv-vendor-owner-user')]
 class SCMVMakeVendorOwnerUserCommand extends MakeUserCommand
 {
-
     protected $description = 'Create a new SCMV vendor owner user';
 
     protected $signature = 'make:scmv-vendor-owner-user
@@ -23,7 +22,7 @@ class SCMVMakeVendorOwnerUserCommand extends MakeUserCommand
 
         $this->options = $this->options();
 
-        if (!Filament::getCurrentPanel()) {
+        if (! Filament::getCurrentPanel()) {
             $this->error('Filament has not been installed yet: php artisan filament:install --panels');
 
             return static::INVALID;
