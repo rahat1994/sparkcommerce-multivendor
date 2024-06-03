@@ -36,7 +36,7 @@ class SCMVMakeAdminUserCommand extends Command
                 label: 'Email address',
                 required: true,
                 validate: fn (string $email): ?string => match (true) {
-                    !filter_var($email, FILTER_VALIDATE_EMAIL) => 'The email address must be valid.',
+                    ! filter_var($email, FILTER_VALIDATE_EMAIL) => 'The email address must be valid.',
                     static::getUserModel()::where('email', $email)->exists() => 'A user with this email address already exists',
                     default => null,
                 },
@@ -80,7 +80,7 @@ class SCMVMakeAdminUserCommand extends Command
     public function handle(): int
     {
 
-        if (!Filament::getCurrentPanel()) {
+        if (! Filament::getCurrentPanel()) {
             $this->error('Filament has not been installed yet: php artisan filament:install');
 
             return static::INVALID;
