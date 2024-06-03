@@ -14,7 +14,7 @@ class SCMVVendor extends Model
         'user_id',
         'slug',
         'category',
-        'contact_number'
+        'contact_number',
     ];
 
     protected $casts = [
