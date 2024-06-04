@@ -8,12 +8,15 @@ use Filament\Support\Assets\Css;
 use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Filesystem\Filesystem;
 use Livewire\Features\SupportTesting\Testable;
+use Rahat1994\SparkCommerce\Models\SCProduct;
 use Rahat1994\SparkcommerceMultivendor\Commands\SCMVMakeAdminUserCommand;
 use Rahat1994\SparkcommerceMultivendor\Commands\SCMVMakeVendorOwnerUserCommand;
 use Rahat1994\SparkcommerceMultivendor\Commands\SCMVPublishRolesCommand;
 use Rahat1994\SparkcommerceMultivendor\Commands\SparkcommerceMultivendorPublishMigrationsCommand;
+use Rahat1994\SparkcommerceMultivendor\Models\SCMVVendor;
 use Rahat1994\SparkcommerceMultivendor\Testing\TestsSparkcommerceMultivendor;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
@@ -90,8 +93,19 @@ class SparkcommerceMultivendorServiceProvider extends PackageServiceProvider
             }
         }
 
+        // Add the necessary methods to Sparkcommerce Models to function.
+        $this->prepareSparkcommerceModels();
         // Testing
         Testable::mixin(new TestsSparkcommerceMultivendor());
+    }
+
+    protected function prepareSparkcommerceModels(): void
+    {
+        // Add the necessary methods to Sparkcommerce Models to function.
+        SCProduct::resolveRelationUsing('sCMVVendor', function ($product) {
+                return $product->belongsTo(SCMVVendor::class, 'vendor_id', 'id');
+        });
+
     }
 
     protected function getAssetPackageName(): ?string
