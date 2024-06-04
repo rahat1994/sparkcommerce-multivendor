@@ -35,7 +35,7 @@ class SCMVPublishRolesCommand extends Command
         });
 
         $role = Role::firstOrCreate(['name' => $vendorOwnerRole]);
-        $role->syncPermissions($vendorOwnerPermissions);
+        $role->syncPermissions(array_keys($vendorOwnerPermissions));
     }
 
     protected function publishAdminPermissionsAndRole()
