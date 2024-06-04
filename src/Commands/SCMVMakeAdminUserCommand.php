@@ -10,6 +10,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 use function Laravel\Prompts\password;
@@ -78,15 +79,28 @@ class SCMVMakeAdminUserCommand extends Command
 
     public function handle(): int
     {
-        $this->options = $this->options();
 
         if (! Filament::getCurrentPanel()) {
-            $this->error('Filament has not been installed yet: php artisan filament:install --panels');
+            $this->error('Filament has not been installed yet: php artisan filament:install');
 
             return static::INVALID;
         }
 
+        $adminRoleLabel = config('sparkcommerce-multivendor.admin_role');
+
+        // TODO: Check if roles have been published
+        // TODO: [Documentation] Add a note about publishing roles.
+
+        if (Role::where('name', $adminRoleLabel)->first() === null) {
+            $this->error('Roles have not been published yet: php artisan scmv:publish-roles');
+
+            return static::INVALID;
+        }
+
+        $this->options = $this->options();
         $user = $this->createUser();
+
+        $user->assignRole($adminRoleLabel);
         $this->sendSuccessMessage($user);
 
         return static::SUCCESS;

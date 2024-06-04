@@ -19,12 +19,12 @@ class AuthMiddleware extends Middleware
                 $panelType = $plugin->getPanelType();
                 if ($panelType === PanelType::Vendor) {
                     $user = Filament::auth()->user();
-                    if (! $user->hasRole('vendor')) {
+                    if (! $user->hasRole(config('sparkcommerce-multivendor.vendor_owner_role'))) {
                         abort_if(true, 403, 'access forbidden.');
                     }
                 } elseif ($panelType === PanelType::Admin) {
                     $user = Filament::auth()->user();
-                    if (! $user->hasRole('admin')) {
+                    if (! $user->hasRole(config('sparkcommerce-multivendor.admin_role'))) {
                         abort_if(true, 403, 'access forbidden.');
                     }
                 }

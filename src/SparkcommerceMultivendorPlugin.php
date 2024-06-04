@@ -86,7 +86,6 @@ class SparkcommerceMultivendorPlugin implements Plugin
     public static function make(PanelType $panelType = PanelType::Admin): static
     {
         $static = app(static::class, ['panelType' => $panelType]);
-        // $static->confiure();
 
         return $static;
     }
