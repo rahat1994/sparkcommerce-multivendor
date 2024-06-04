@@ -5,8 +5,8 @@ namespace Rahat1994\SparkcommerceMultivendor\Commands;
 use Filament\Facades\Filament;
 use Illuminate\Auth\EloquentUserProvider;
 // use Illuminate\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Authenticatable; 
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +18,6 @@ use function Laravel\Prompts\text;
 #[AsCommand(name: 'make:scmv-admin-user')]
 class SCMVMakeAdminUserCommand extends Command
 {
-
     public $signature = 'make:scmv-admin-user
                             {--name= : The name of the admin user}
                             {--email= : The email of the admin user}
@@ -56,7 +55,7 @@ class SCMVMakeAdminUserCommand extends Command
 
     protected function sendSuccessMessage(Authenticatable $user): void
     {
-        $this->components->info('Success! ' . ($user->getAttribute('email') ?? $user->getAttribute('username') ?? 'You') . " may now log in.");
+        $this->components->info('Success! ' . ($user->getAttribute('email') ?? $user->getAttribute('username') ?? 'You') . ' may now log in.');
     }
 
     protected function getAuthGuard(): Guard
