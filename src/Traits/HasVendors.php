@@ -22,7 +22,6 @@ trait HasVendors
 
     public function canAccessTenant(Model $tenant): bool
     {
-        // dd("Hello");
         return $this->vendors()->whereKey($tenant)->exists();
     }
 }
