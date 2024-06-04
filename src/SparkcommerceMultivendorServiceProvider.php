@@ -102,7 +102,7 @@ class SparkcommerceMultivendorServiceProvider extends PackageServiceProvider
     {
         // Add the necessary methods to Sparkcommerce Models to function.
         SCProduct::resolveRelationUsing('sCMVVendor', function ($product) {
-                return $product->belongsTo(SCMVVendor::class, 'vendor_id', 'id');
+            return $product->belongsTo(SCMVVendor::class, 'vendor_id', 'id');
         });
 
     }
