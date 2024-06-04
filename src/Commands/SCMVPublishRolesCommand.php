@@ -24,7 +24,7 @@ class SCMVPublishRolesCommand extends Command
         $this->publishAdminPermissionsAndRole();
         $this->publishVendorOwnerPermissionsAndRole();
     }
-  
+
     protected function publishVendorOwnerPermissionsAndRole()
     {
         $vendorOwnerRole = config('sparkcommerce-multivendor.vendor_owner_role');
@@ -39,7 +39,6 @@ class SCMVPublishRolesCommand extends Command
     }
 
     protected function publishAdminPermissionsAndRole()
-
     {
         $adminRole = config('sparkcommerce-multivendor.admin_role');
         $adminPermissions = config('sparkcommerce-multivendor.admin_permissions');
