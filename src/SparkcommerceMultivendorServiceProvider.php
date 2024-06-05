@@ -10,7 +10,10 @@ use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
 use Livewire\Features\SupportTesting\Testable;
+use Rahat1994\SparkCommerce\Models\SCCategory;
 use Rahat1994\SparkCommerce\Models\SCProduct;
+use Rahat1994\SparkCommerce\Models\SCReview;
+use Rahat1994\SparkCommerce\Models\SCTag;
 use Rahat1994\SparkcommerceMultivendor\Commands\SCMVMakeAdminUserCommand;
 use Rahat1994\SparkcommerceMultivendor\Commands\SCMVMakeVendorOwnerUserCommand;
 use Rahat1994\SparkcommerceMultivendor\Commands\SCMVPublishRolesCommand;
@@ -105,6 +108,18 @@ class SparkcommerceMultivendorServiceProvider extends PackageServiceProvider
                 return $product->belongsTo(SCMVVendor::class, 'vendor_id', 'id');
         });
 
+        SCCategory::resolveRelationUsing('sCMVVendor', function ($category) {
+            return $category->belongsTo(SCMVVendor::class, 'vendor_id', 'id');
+        });
+
+        SCTag::resolveRelationUsing('sCMVVendor', function ($tag) {
+            return $tag->belongsTo(SCMVVendor::class, 'vendor_id', 'id');
+        });
+
+        SCReview::resolveRelationUsing('sCMVVendor', function ($review) {
+            return $review->belongsTo(SCMVVendor::class, 'vendor_id', 'id');
+        });
+
     }
 
     protected function getAssetPackageName(): ?string
@@ -167,7 +182,10 @@ class SparkcommerceMultivendorServiceProvider extends PackageServiceProvider
     protected function getMigrations(): array
     {
         return [
-            'create_sc_mv_add_vendor_id_to_products_table',
+            'add_vendor_id_to_tags_table',
+            'add_vendor_id_to_reviews_table',
+            'add_vendor_id_to_products_table',
+            'add_vendor_id_to_categories_table',
             'create_sc_mv_vendors_table',
             'create_sc_mv_vendor_requests_table',
             'create_sc_mv_vendor_users_table',

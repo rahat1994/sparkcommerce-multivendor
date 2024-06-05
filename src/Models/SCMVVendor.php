@@ -4,6 +4,7 @@ namespace Rahat1994\SparkcommerceMultivendor\Models;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Rahat1994\SparkCommerce\Models\SCProduct;
 
 class SCMVVendor extends Model
 {
@@ -35,5 +36,13 @@ class SCMVVendor extends Model
     public function members()
     {
         return $this->belongsToMany(User::class, 'sc_mv_user_vendor', 'vendor_id', 'user_id');
+    }
+
+    public function sCProducts(){
+        return $this->hasMany(SCProduct::class, 'vendor_id', 'id');
+    }
+
+    public function SCCategories(){
+        return $this->hasMany(SCProduct::class, 'vendor_id', 'id');
     }
 }
