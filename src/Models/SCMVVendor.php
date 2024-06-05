@@ -38,11 +38,13 @@ class SCMVVendor extends Model
         return $this->belongsToMany(User::class, 'sc_mv_user_vendor', 'vendor_id', 'user_id');
     }
 
-    public function sCProducts(){
+    public function sCProducts()
+    {
         return $this->hasMany(SCProduct::class, 'vendor_id', 'id');
     }
 
-    public function SCCategories(){
+    public function SCCategories()
+    {
         return $this->hasMany(SCProduct::class, 'vendor_id', 'id');
     }
 }
