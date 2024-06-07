@@ -3,6 +3,7 @@
 namespace Rahat1994\SparkcommerceMultivendor\Filament\Pages\Tenancy;
 
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\Tenancy\RegisterTenant;
@@ -44,6 +45,10 @@ class RegisterVendor extends RegisterTenant
                     ->required()
                     ->email()
                     ->placeholder('johndoe@example.com'),
+                TagsInput::make('postcodes')
+                    ->label('Postcodes')
+                    ->required()
+                    ->placeholder('Postcodes where the vendor delivers'),
             ]);
     }
 
