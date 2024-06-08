@@ -3,18 +3,14 @@
 namespace Rahat1994\SparkcommerceMultivendor\Filament\Pages\Tenancy;
 
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\Tenancy\RegisterTenant;
 use Rahat1994\SparkcommerceMultivendor\Models\SCMVVendor;
+use Spatie\Macroable\Macroable;
 
 class RegisterVendor extends RegisterTenant
 {
-    // public static $title = 'Register Vendor';
-
-    // public static $slug = 'register-vendor';
-
     public static function getLabel(): string
     {
         return 'Register Vendor';
@@ -22,6 +18,11 @@ class RegisterVendor extends RegisterTenant
 
     public function form(Form $form): Form
     {
+        if (static::hasMacro('configureForm')) {
+            return $this->configureForm($form);
+        }
+        // return $this->configureForm($form);
+        // return $this->configureForm($form);
         return $form
             ->schema([
                 TextInput::make('name')
@@ -45,10 +46,6 @@ class RegisterVendor extends RegisterTenant
                     ->required()
                     ->email()
                     ->placeholder('johndoe@example.com'),
-                TagsInput::make('postcodes')
-                    ->label('Postcodes')
-                    ->required()
-                    ->placeholder('Postcodes where the vendor delivers'),
             ]);
     }
 
