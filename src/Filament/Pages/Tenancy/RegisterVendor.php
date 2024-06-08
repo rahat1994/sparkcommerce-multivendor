@@ -7,7 +7,6 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\Tenancy\RegisterTenant;
 use Rahat1994\SparkcommerceMultivendor\Models\SCMVVendor;
-use Spatie\Macroable\Macroable;
 
 class RegisterVendor extends RegisterTenant
 {
@@ -21,6 +20,7 @@ class RegisterVendor extends RegisterTenant
         if (static::hasMacro('configureForm')) {
             return $this->configureForm($form);
         }
+
         // return $this->configureForm($form);
         // return $this->configureForm($form);
         return $form
