@@ -2,8 +2,6 @@
 
 // config for Rahat1994/SparkcommerceMultivendor
 
-use Rahat1994\SparkcommerceMultivendor\Models\SCMVVendor;
-
 return [
     'table_prefix' => 'sc_mv_',
     'admin_role' => 'scmv_admin',

@@ -74,7 +74,7 @@ class SparkcommerceMultivendorPlugin implements Plugin
                 VendorRequestResource::class,
                 PayoutRequestResource::class,
                 SupportTicketResource::class,
-                ShopCategoryResource::class
+                ShopCategoryResource::class,
             ];
         }
 
