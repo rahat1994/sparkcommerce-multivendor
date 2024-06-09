@@ -119,7 +119,6 @@ class SparkcommerceMultivendorServiceProvider extends PackageServiceProvider
         SCReview::resolveRelationUsing('sCMVVendor', function ($review) {
             return $review->belongsTo(SCMVVendor::class, 'vendor_id', 'id');
         });
-
     }
 
     protected function getAssetPackageName(): ?string
@@ -191,6 +190,7 @@ class SparkcommerceMultivendorServiceProvider extends PackageServiceProvider
             'create_sc_mv_vendor_users_table',
             'create_sc_mv_support_tickets_table',
             'create_sc_mv_payout_requests_table',
+            'create_sc_mv_shop_categories_table'
         ];
     }
 }

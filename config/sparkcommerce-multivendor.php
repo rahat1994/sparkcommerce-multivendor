@@ -1,6 +1,9 @@
 <?php
 
 // config for Rahat1994/SparkcommerceMultivendor
+
+use Rahat1994\SparkcommerceMultivendor\Models\SCMVVendor;
+
 return [
     'table_prefix' => 'sc_mv_',
     'admin_role' => 'scmv_admin',
@@ -50,7 +53,6 @@ return [
         'edit_vendor_order_shipping' => 'Edit Vendor Order Shipping',
         'delete_vendor_order_shipping' => 'Delete Vendor Order Shipping',
     ],
-
     'vendor_owner_permissions' => [
         'view_own_vendor_profile' => 'View own vendor profile',
         'edit_own_vendor_profile' => 'Edit own vendor profile',
@@ -79,5 +81,4 @@ return [
         'edit_own_vendor_order_shipping' => 'Edit Own Vendor Order Shipping',
         'delete_own_vendor_order_shipping' => 'Delete Own Vendor Order Shipping',
     ],
-
 ];

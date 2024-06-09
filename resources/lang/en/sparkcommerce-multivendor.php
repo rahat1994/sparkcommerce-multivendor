@@ -139,5 +139,16 @@ return [
 
             ],
         ],
+        'shop_category' => [
+            'model_label' => 'Shop Category',
+            'icon' => 'heroicon-o-rectangle-stack',
+            'model_plural_label' => 'Shop Categories',
+            'navigation_group' => 'Multi Vendor',
+            'navigation' => 'Shop Categories',
+            'creation_form' => [
+                'product_name' => 'Category Name',
+                'description' => 'Description',
+            ],
+        ],
     ],
 ];

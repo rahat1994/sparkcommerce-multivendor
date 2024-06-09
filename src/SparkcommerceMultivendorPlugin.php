@@ -8,6 +8,7 @@ use Filament\Panel;
 use Rahat1994\SparkcommerceMultivendor\Enums\PanelType;
 use Rahat1994\SparkcommerceMultivendor\Filament\Pages\Tenancy\RegisterVendor;
 use Rahat1994\SparkcommerceMultivendor\Filament\Resources\PayoutRequestResource;
+use Rahat1994\SparkcommerceMultivendor\Filament\Resources\ShopCategoryResource;
 use Rahat1994\SparkcommerceMultivendor\Filament\Resources\SupportTicketResource;
 use Rahat1994\SparkcommerceMultivendor\Filament\Resources\VendorRequestResource;
 use Rahat1994\SparkcommerceMultivendor\Filament\Resources\VendorResource;
@@ -73,6 +74,7 @@ class SparkcommerceMultivendorPlugin implements Plugin
                 VendorRequestResource::class,
                 PayoutRequestResource::class,
                 SupportTicketResource::class,
+                ShopCategoryResource::class
             ];
         }
 
