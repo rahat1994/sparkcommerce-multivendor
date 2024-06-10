@@ -53,8 +53,11 @@ class ShopCategoryResource extends Resource
                 RichEditor::make('description')
                     ->label('Description')
                     ->placeholder('Category Description'),
-
-            ]);
+                TextInput::make('order')
+                    ->numeric()
+                    ->label('Order')
+                    ->placeholder('Order'),
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table
