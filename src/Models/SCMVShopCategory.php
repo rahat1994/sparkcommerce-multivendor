@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SCMVShopCategory extends Model
 {
     use Sluggable;
+
     protected $fillable = [
         'name',
         'slug',
@@ -36,8 +37,8 @@ class SCMVShopCategory extends Model
     {
         return [
             'slug' => [
-                'source' => 'title'
-            ]
+                'source' => 'title',
+            ],
         ];
     }
 }
