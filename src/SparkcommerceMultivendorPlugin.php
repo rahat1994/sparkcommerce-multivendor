@@ -81,9 +81,7 @@ class SparkcommerceMultivendorPlugin implements Plugin
         return [];
     }
 
-    public function boot(Panel $panel): void
-    {
-    }
+    public function boot(Panel $panel): void {}
 
     public static function make(PanelType $panelType = PanelType::Admin): static
     {
