@@ -23,6 +23,6 @@ class SCMVPayoutRequest extends Model
      */
     public function getTable()
     {
-        return config('sparkcommerce-multivendor.table_prefix') . 'payoput_requests';
+        return config('sparkcommerce-multivendor.table_prefix') . 'payout_requests';
     }
 }

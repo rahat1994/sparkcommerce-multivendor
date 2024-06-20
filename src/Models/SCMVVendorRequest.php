@@ -20,6 +20,6 @@ class SCMVVendorRequest extends Model
      */
     public function getTable()
     {
-        return config('sparkcommerce-multivendor.table_prefix') . 'vendors';
+        return config('sparkcommerce-multivendor.table_prefix') . 'vendor_requests';
     }
 }
