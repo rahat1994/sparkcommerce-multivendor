@@ -45,6 +45,11 @@ class SCMVVendor extends Model
 
     public function SCCategories()
     {
-        return $this->hasMany(SCProduct::class, 'vendor_id', 'id');
+        // return $this->hasMany(SCProduct::class, 'vendor_id', 'id');
     }
+
+    // public function scmvShopCategory()
+    // {
+    //     $this->belongsTo(SCMVShopCategory::class, 'category', 'id');
+    // }
 }

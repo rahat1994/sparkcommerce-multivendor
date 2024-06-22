@@ -111,6 +111,7 @@ return [
             'model_plural_label' => 'Vendors',
             'navigation_group' => 'Multi Vendor',
             'navigation' => 'Vendors',
+            'make_top_vendor' => 'Make Top Vendor',
             'creation_form' => [
                 'product_name' => 'Product Name',
                 'description' => 'Description',
