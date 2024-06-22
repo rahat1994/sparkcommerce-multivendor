@@ -3,11 +3,14 @@
 namespace Rahat1994\SparkcommerceMultivendor\Models;
 
 use App\Models\User;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Rahat1994\SparkCommerce\Models\SCProduct;
 
 class SCMVVendor extends Model
 {
+    use Sluggable;
+
     protected $fillable = [
         'name',
         'email',
@@ -21,6 +24,7 @@ class SCMVVendor extends Model
     protected $casts = [
         'name' => 'string',
         'meta' => 'array',
+        'category' => 'array',
         'user_id' => 'integer',
     ];
 
@@ -53,4 +57,13 @@ class SCMVVendor extends Model
     // {
     //     $this->belongsTo(SCMVShopCategory::class, 'category', 'id');
     // }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name',
+            ],
+        ];
+    }
 }

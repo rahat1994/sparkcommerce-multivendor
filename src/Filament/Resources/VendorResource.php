@@ -60,6 +60,7 @@ class VendorResource extends Resource
                     ->multiple()
                     ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.vendor.category'))
                     ->options(SCMVShopCategory::all()->pluck('name')->toArray()),
+
             ]);
     }
 
@@ -89,11 +90,11 @@ class VendorResource extends Resource
                     ->requiresConfirmation()
                     ->icon('heroicon-c-arrow-up-circle')
                     ->action(function (SCMVVendor $record) {
-                        if ($record->meta !== null && $record->meta['is_top_vendor'] === 0) {
+                        if ($record->meta !== null && isset($record->meta['is_top_vendor']) && $record->meta['is_top_vendor'] === 0) {
                             $record->meta['is_top_vendor'] = 1;
                             $record->save();
-                        } else if ($record->meta !== null && $record->meta['is_top_vendor'] === 1) {
-                            $record->meta['is_top_vendor'] = 0;
+                        } else if ($record->meta !== null && !isset($record->meta['is_top_vendor'])) {
+                            $record->meta = ['is_top_vendor' => 1];
                             $record->save();
                         } else if ($record->meta === null) {
                             $record->meta = ['is_top_vendor' => 1];
@@ -102,7 +103,6 @@ class VendorResource extends Resource
 
                         Notification::make()
                             ->title('Vendor Updated')
-                            ->message('Vendor has been updated successfully.')
                             ->success()
                             ->send();
 
