@@ -20,6 +20,7 @@ class SCMVVendor extends Model
 
     protected $casts = [
         'name' => 'string',
+        'meta' => 'array',
         'user_id' => 'integer',
     ];
 

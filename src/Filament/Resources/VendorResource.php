@@ -82,21 +82,21 @@ class VendorResource extends Resource
                     ->visible(function (SCMVVendor $record) {
                         if ($record->meta === null) {
                             return true;
-                        } elseif (isset($record->meta['top_vendor']) && $record->meta['top_vendor'] === 0) {
+                        } else if ($record->meta !== null && !isset($record->meta['is_top_vendor']) || $record->meta['is_top_vendor'] === 0) {
                             return true;
                         }
                     })
                     ->requiresConfirmation()
                     ->icon('heroicon-c-arrow-up-circle')
                     ->action(function (SCMVVendor $record) {
-                        if ($record->meta !== null && $record->meta['top_vendor'] === 0) {
-                            $record->meta['top_vendor'] = 1;
+                        if ($record->meta !== null && $record->meta['is_top_vendor'] === 0) {
+                            $record->meta['is_top_vendor'] = 1;
                             $record->save();
-                        } else if ($record->meta !== null && $record->meta['top_vendor'] === 1) {
-                            $record->meta['top_vendor'] = 0;
+                        } else if ($record->meta !== null && $record->meta['is_top_vendor'] === 1) {
+                            $record->meta['is_top_vendor'] = 0;
                             $record->save();
                         } else if ($record->meta === null) {
-                            $record->meta = ['top_vendor' => 1];
+                            $record->meta = ['is_top_vendor' => 1];
                             $record->save();
                         }
 
