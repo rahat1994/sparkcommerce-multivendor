@@ -37,7 +37,7 @@ class SCMVShopCategory extends Model
     {
         return [
             'slug' => [
-                'source' => 'title',
+                'source' => 'name',
             ],
         ];
     }
