@@ -82,7 +82,7 @@ class VendorResource extends Resource
                     ->visible(function (SCMVVendor $record) {
                         if ($record->meta === null) {
                             return true;
-                        } else if ($record->meta !== null && !isset($record->meta['is_top_vendor']) || $record->meta['is_top_vendor'] === 0) {
+                        } elseif ($record->meta !== null && ! isset($record->meta['is_top_vendor']) || $record->meta['is_top_vendor'] === 0) {
                             return true;
                         }
                     })
@@ -92,10 +92,10 @@ class VendorResource extends Resource
                         if ($record->meta !== null && $record->meta['is_top_vendor'] === 0) {
                             $record->meta['is_top_vendor'] = 1;
                             $record->save();
-                        } else if ($record->meta !== null && $record->meta['is_top_vendor'] === 1) {
+                        } elseif ($record->meta !== null && $record->meta['is_top_vendor'] === 1) {
                             $record->meta['is_top_vendor'] = 0;
                             $record->save();
-                        } else if ($record->meta === null) {
+                        } elseif ($record->meta === null) {
                             $record->meta = ['is_top_vendor' => 1];
                             $record->save();
                         }
@@ -106,8 +106,7 @@ class VendorResource extends Resource
                             ->success()
                             ->send();
 
-                        return;
-                    })
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
