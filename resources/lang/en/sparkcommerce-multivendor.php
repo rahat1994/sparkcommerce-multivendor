@@ -112,10 +112,14 @@ return [
             'navigation_group' => 'Multi Vendor',
             'navigation' => 'Vendors',
             'make_top_vendor' => 'Make Top Vendor',
+            'logo' => 'Logo',
+            'banner' => 'Banner',
+            'demote_top_vendor' => 'Demote Top Vendor',
             'creation_form' => [
-                'product_name' => 'Product Name',
-                'description' => 'Description',
-                'sku' => 'SKU',
+                'name' => 'Vendor Name',
+                'email' => 'E-mail',
+                'phone' => 'Phone',
+                'categories' => 'Categories',
                 'product_dimension' => [
                     'fieldset_name' => 'Product Dimensions',
                     'height' => 'Height',

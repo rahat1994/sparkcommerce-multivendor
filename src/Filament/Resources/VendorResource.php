@@ -3,6 +3,7 @@
 namespace Rahat1994\SparkcommerceMultivendor\Filament\Resources;
 
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
@@ -50,16 +51,25 @@ class VendorResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')
-                    ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.vendor.name')),
+                    ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.vendor.creation_form.name')),
                 TextInput::make('email')
+                    ->required()
                     ->email()
-                    ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.vendor.email')),
+                    ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.vendor.creation_form.email')),
                 TextInput::make('contact_number')
-                    ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.vendor.phone')),
+                    ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.vendor.creation_form.phone')),
                 Select::make('category')
                     ->multiple()
-                    ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.vendor.category'))
+                    ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.vendor.creation_form.categories'))
                     ->options(SCMVShopCategory::all()->pluck('name')->toArray()),
+                SpatieMediaLibraryFileUpload::make('logo')
+                    ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.vendor.logo'))
+                    ->collection('vendor_logos')
+                    ->rules('required'),
+                SpatieMediaLibraryFileUpload::make('banner')
+                    ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.vendor.banner'))
+                    ->collection('vendor_banners')
+                    ->rules('required'),
 
             ]);
     }
@@ -106,6 +116,36 @@ class VendorResource extends Resource
                             ->success()
                             ->send();
                     }),
+                Action::make('Demote Top Vendor')
+                    ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.vendor.demote_top_vendor'))
+                    ->visible(function (SCMVVendor $record) {
+                        // The action is visible if 'is_top_vendor' is set and equals 1
+                        return isset($record->meta['is_top_vendor']) && $record->meta['is_top_vendor'] === 1;
+                    })
+                    ->requiresConfirmation()
+                    ->icon('heroicon-c-arrow-down-circle')
+                    ->action(function (SCMVVendor $record) {
+                        // Check if 'is_top_vendor' is set and equals 1
+                        if (isset($record->meta['is_top_vendor']) && $record->meta['is_top_vendor'] === 1) {
+                            // Set 'is_top_vendor' to 0 and save the record
+                            $meta = $record->meta ?? [];
+
+                            // Step 2: Modify the value
+                            $meta['is_top_vendor'] = 0; // Set or modify the value as needed
+
+                            // Step 3: Assign the modified value back to the model's property
+                            $record->meta = $meta;
+
+                            // Step 4: Save the model
+                            $record->save();
+                        }
+
+                        // Send a notification indicating the vendor has been demoted
+                        Notification::make()
+                            ->title('Vendor Updated')
+                            ->success()
+                            ->send();
+                    })
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
