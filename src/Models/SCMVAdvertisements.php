@@ -3,7 +3,6 @@
 namespace Rahat1994\SparkcommerceMultivendor\Models;
 
 use App\Models\User;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Rahat1994\SparkCommerce\Models\SCProduct;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -11,7 +10,7 @@ use Spatie\MediaLibrary\HasMedia;
 
 class SCMVAdvertisements extends Model implements HasMedia
 {
-    use Sluggable, InteractsWithMedia;
+    use InteractsWithMedia;
 
     protected $fillable = [
         'name',

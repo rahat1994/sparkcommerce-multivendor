@@ -56,16 +56,30 @@ class AdvertisementResource extends Resource
                 TextInput::make('url')
                     ->required()
                     ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.advertisement.creation_form.url')),
+                Select::make('position')
+                    ->options(
+                        config('sparkcommerce-multivendor.advertisement_positions')
+                    )
+                    ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.advertisement.creation_form.advertisement_position')),
                 SpatieMediaLibraryFileUpload::make('advertisement')
-                    ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.advertisement.creative'))
+                    ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.advertisement.creation_form.creative'))
                     ->collection('vendor_logos')
+                    ->multiple()
                     ->rules('required'),
             ]);
     }
 
     public static function table(Table $table): Table
     {
-        return $table->columns([])->actions([]);
+        return $table->columns([
+            TextColumn::make('name')
+                ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.advertisement.creation_form.name')),
+            TextColumn::make('impressions'),
+            TextColumn::make('clicks'),
+            TextColumn::make('url'),
+        ])->actions([
+            Tables\Actions\EditAction::make(),
+        ]);
     }
 
     public static function getRelations(): array

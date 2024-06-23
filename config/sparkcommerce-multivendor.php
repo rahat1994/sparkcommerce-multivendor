@@ -9,6 +9,11 @@ return [
     'customer_role' => 'scmv_customer',
     'default_role' => 'scmv_customer',
     'vendor_manager_role' => 'scmv_vendor_manager',
+    "advertisement_positions" => [
+        'Landing Page Single Column',
+        'Landing Page Double Column',
+        'Product Page Double Column'
+    ],
     'admin_permissions' => [
         'view_vendor_profile' => 'View Vendor Profile',
         'create_vendor' => 'Create Vendor',

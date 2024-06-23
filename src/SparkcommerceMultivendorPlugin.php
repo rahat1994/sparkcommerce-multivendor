@@ -7,6 +7,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Panel;
 use Rahat1994\SparkcommerceMultivendor\Enums\PanelType;
 use Rahat1994\SparkcommerceMultivendor\Filament\Pages\Tenancy\RegisterVendor;
+use Rahat1994\SparkcommerceMultivendor\Filament\Resources\AdvertisementResource;
 use Rahat1994\SparkcommerceMultivendor\Filament\Resources\PayoutRequestResource;
 use Rahat1994\SparkcommerceMultivendor\Filament\Resources\ShopCategoryResource;
 use Rahat1994\SparkcommerceMultivendor\Filament\Resources\SupportTicketResource;
@@ -75,13 +76,16 @@ class SparkcommerceMultivendorPlugin implements Plugin
                 PayoutRequestResource::class,
                 SupportTicketResource::class,
                 ShopCategoryResource::class,
+                AdvertisementResource::class
             ];
         }
 
         return [];
     }
 
-    public function boot(Panel $panel): void {}
+    public function boot(Panel $panel): void
+    {
+    }
 
     public static function make(PanelType $panelType = PanelType::Admin): static
     {
