@@ -144,6 +144,44 @@ return [
 
             ],
         ],
+        'advertisement' => [
+            'model_label' => 'Advertisement',
+            'icon' => 'heroicon-o-rectangle-stack',
+            'model_plural_label' => 'Vendors',
+            'navigation_group' => 'Multi Vendor',
+            'navigation' => 'Vendors',
+            'make_top_vendor' => 'Make Top Vendor',
+            'logo' => 'Logo',
+            'banner' => 'Banner',
+            'demote_top_vendor' => 'Demote Top Vendor',
+            'creation_form' => [
+                'name' => 'Advertisement Name',
+                'url' => 'URL (Target)',
+                'creative' => 'Creative',
+                'product_dimension' => [
+                    'fieldset_name' => 'Product Dimensions',
+                    'height' => 'Height',
+                    'weight' => 'Weight',
+                    'width' => 'Width',
+                    'length' => 'Length',
+                ],
+                'tabs_section' => [
+                    'tabs' => [
+                        'inventory' => 'Inventory',
+                        'linked_products' => 'Linked Products',
+                        'pricing' => 'Pricing',
+                        'shipping' => 'Shipping',
+                        'product_dimension' => 'Product Dimensions',
+                        'attributes' => 'Attributes',
+                        'variations' => 'Variations',
+                        'advanced' => 'Advanced',
+                        'more_option' => 'More Options',
+                    ],
+
+                ],
+
+            ],
+        ],
         'shop_category' => [
             'model_label' => 'Shop Category',
             'icon' => 'heroicon-o-rectangle-stack',

@@ -3,6 +3,7 @@
 namespace Rahat1994\SparkcommerceMultivendor\Filament\Resources;
 
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -57,6 +58,9 @@ class ShopCategoryResource extends Resource
                     ->numeric()
                     ->label('Order')
                     ->placeholder('Order'),
+                SpatieMediaLibraryFileUpload::make('image')
+                    ->label('Image')
+                    ->placeholder('Category Image'),
             ])->columns(1);
     }
 
