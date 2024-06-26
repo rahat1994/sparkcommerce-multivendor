@@ -63,7 +63,7 @@ class AdvertisementResource extends Resource
                     ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.advertisement.creation_form.advertisement_position')),
                 SpatieMediaLibraryFileUpload::make('advertisement')
                     ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.advertisement.creation_form.creative'))
-                    ->collection('vendor_logos')
+                    ->collection('advertisement')
                     ->multiple()
                     ->rules('required'),
             ]);
