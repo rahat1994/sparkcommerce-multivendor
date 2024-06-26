@@ -8,7 +8,7 @@ use Rahat1994\SparkCommerce\Models\SCProduct;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\HasMedia;
 
-class SCMVAdvertisements extends Model implements HasMedia
+class SCMVAdvertisement extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
@@ -19,6 +19,7 @@ class SCMVAdvertisements extends Model implements HasMedia
         'clicks',
         'user_id',
         'meta',
+        'position',
         'contact_number',
     ];
 

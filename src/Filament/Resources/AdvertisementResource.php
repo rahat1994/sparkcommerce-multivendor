@@ -13,13 +13,13 @@ use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Rahat1994\SparkcommerceMultivendor\Filament\Resources\AdvertisementResource\Pages;
-use Rahat1994\SparkcommerceMultivendor\Models\SCMVAdvertisements;
+use Rahat1994\SparkcommerceMultivendor\Models\SCMVAdvertisement;
 use Rahat1994\SparkcommerceMultivendor\Models\SCMVShopCategory;
 use Rahat1994\SparkcommerceMultivendor\Models\SCMVVendor;
 
 class AdvertisementResource extends Resource
 {
-    protected static ?string $model = SCMVAdvertisements::class;
+    protected static ?string $model = SCMVAdvertisement::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
 
@@ -58,7 +58,7 @@ class AdvertisementResource extends Resource
                     ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.advertisement.creation_form.url')),
                 Select::make('position')
                     ->options(
-                        config('sparkcommerce-multivendor.advertisement_positions')
+                        collect(config('sparkcommerce-multivendor.advertisement_positions'))->mapWithKeys(fn ($position) => [$position => $position])
                     )
                     ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.advertisement.creation_form.advertisement_position')),
                 SpatieMediaLibraryFileUpload::make('advertisement')
