@@ -119,6 +119,8 @@ class SparkcommerceMultivendorServiceProvider extends PackageServiceProvider
         SCReview::resolveRelationUsing('sCMVVendor', function ($review) {
             return $review->belongsTo(SCMVVendor::class, 'vendor_id', 'id');
         });
+        
+        SCCategory::observe(Observers\SCProductCategoryObserver::class);
     }
 
     protected function getAssetPackageName(): ?string
