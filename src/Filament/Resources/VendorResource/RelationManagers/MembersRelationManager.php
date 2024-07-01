@@ -7,6 +7,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Actions\AttachAction;
+use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DetachAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
@@ -39,6 +40,7 @@ class MembersRelationManager extends RelationManager
             ->filters([
                 //
             ])->headerActions([
+                CreateAction::make('create_new_card'),
                 AttachAction::make()
                     ->after(function (array $data) {
                         $vendorOwnerRoleLabel = config('sparkcommerce-multivendor.vendor_owner_role');
@@ -48,8 +50,6 @@ class MembersRelationManager extends RelationManager
                         $user->assignRole($vendorOwnerRoleLabel);
                     })
                     ->multiple()
-
-
             ]);
     }
 }
