@@ -13,6 +13,7 @@ use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Rahat1994\SparkcommerceMultivendor\Filament\Resources\VendorResource\Pages;
+use Rahat1994\SparkcommerceMultivendor\Filament\Resources\VendorResource\RelationManagers\MembersRelationManager;
 use Rahat1994\SparkcommerceMultivendor\Models\SCMVShopCategory;
 use Rahat1994\SparkcommerceMultivendor\Models\SCMVVendor;
 
@@ -157,7 +158,7 @@ class VendorResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            MembersRelationManager::class,
         ];
     }
 

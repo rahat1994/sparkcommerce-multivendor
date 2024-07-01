@@ -2,6 +2,7 @@
 
 namespace Rahat1994\SparkcommerceMultivendor;
 
+use App\Models\User;
 use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
 use Filament\Support\Assets\Css;
@@ -119,7 +120,13 @@ class SparkcommerceMultivendorServiceProvider extends PackageServiceProvider
         SCReview::resolveRelationUsing('sCMVVendor', function ($review) {
             return $review->belongsTo(SCMVVendor::class, 'vendor_id', 'id');
         });
-        
+
+        User::resolveRelationUsing('sCMVVendors', function ($user) {
+            // return $user->belongsTo(SCMVVendor::class, 'vendor_id', 'id');
+
+            return $user->belongsToMany(SCMVVendor::class, 'sc_mv_user_vendor', 'user_id', 'vendor_id');
+        });
+
         SCCategory::observe(Observers\SCProductCategoryObserver::class);
     }
 
