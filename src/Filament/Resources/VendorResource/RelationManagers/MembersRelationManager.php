@@ -28,7 +28,7 @@ class MembersRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('name')
+            ->recordTitleAttribute('email')
             ->actions([
                 DetachAction::make(),
                 ViewAction::make(),
