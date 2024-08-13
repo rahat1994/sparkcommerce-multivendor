@@ -5,6 +5,7 @@ namespace Rahat1994\SparkcommerceMultivendor;
 use Filament\Contracts\Plugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Panel;
+use Rahat1994\SparkCommerce\Filament\Resources\UserResource;
 use Rahat1994\SparkcommerceMultivendor\Enums\PanelType;
 use Rahat1994\SparkcommerceMultivendor\Filament\Pages\Tenancy\RegisterVendor;
 use Rahat1994\SparkcommerceMultivendor\Filament\Resources\AdvertisementResource;
@@ -76,16 +77,15 @@ class SparkcommerceMultivendorPlugin implements Plugin
                 PayoutRequestResource::class,
                 SupportTicketResource::class,
                 ShopCategoryResource::class,
-                AdvertisementResource::class
+                AdvertisementResource::class,
+                UserResource::class,
             ];
         }
 
         return [];
     }
 
-    public function boot(Panel $panel): void
-    {
-    }
+    public function boot(Panel $panel): void {}
 
     public static function make(PanelType $panelType = PanelType::Admin): static
     {

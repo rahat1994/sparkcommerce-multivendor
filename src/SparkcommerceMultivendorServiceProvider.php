@@ -12,6 +12,7 @@ use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
 use Livewire\Features\SupportTesting\Testable;
 use Rahat1994\SparkCommerce\Models\SCCategory;
+use Rahat1994\SparkCommerce\Models\SCCoupon;
 use Rahat1994\SparkCommerce\Models\SCOrder;
 use Rahat1994\SparkCommerce\Models\SCProduct;
 use Rahat1994\SparkCommerce\Models\SCReview;
@@ -68,9 +69,7 @@ class SparkcommerceMultivendorServiceProvider extends PackageServiceProvider
         }
     }
 
-    public function packageRegistered(): void
-    {
-    }
+    public function packageRegistered(): void {}
 
     public function packageBooted(): void
     {
@@ -123,6 +122,10 @@ class SparkcommerceMultivendorServiceProvider extends PackageServiceProvider
         });
 
         SCOrder::resolveRelationUsing('sCMVVendor', function ($review) {
+            return $review->belongsTo(SCMVVendor::class, 'vendor_id', 'id');
+        });
+
+        SCCoupon::resolveRelationUsing('sCMVVendor', function ($review) {
             return $review->belongsTo(SCMVVendor::class, 'vendor_id', 'id');
         });
 
@@ -200,6 +203,7 @@ class SparkcommerceMultivendorServiceProvider extends PackageServiceProvider
             'add_vendor_id_to_products_table',
             'add_vendor_id_to_categories_table',
             'add_vendor_id_to_orders_table',
+            'add_vendor_id_to_coupons_table',
             'create_sc_mv_vendors_table',
             'create_sc_mv_vendor_requests_table',
             'create_sc_mv_vendor_users_table',

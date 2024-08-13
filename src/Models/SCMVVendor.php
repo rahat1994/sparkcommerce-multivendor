@@ -5,6 +5,7 @@ namespace Rahat1994\SparkcommerceMultivendor\Models;
 use App\Models\User;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Rahat1994\SparkCommerce\Models\SCCategory;
 use Rahat1994\SparkCommerce\Models\SCProduct;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\HasMedia;
@@ -50,9 +51,9 @@ class SCMVVendor extends Model implements HasMedia
         return $this->hasMany(SCProduct::class, 'vendor_id', 'id');
     }
 
-    public function SCCategories()
+    public function sCCategories()
     {
-        // return $this->hasMany(SCProduct::class, 'vendor_id', 'id');
+        return $this->hasMany(SCCategory::class, 'vendor_id', 'id');
     }
 
     // public function scmvShopCategory()
