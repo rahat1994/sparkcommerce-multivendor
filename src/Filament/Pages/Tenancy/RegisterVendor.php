@@ -52,7 +52,7 @@ class RegisterVendor extends RegisterTenant
     protected function handleRegistration(array $data): SCMVVendor
     {
         // TODO: Use Elequent sluggable package to create slugs.
-        $data['slug'] = $data['name'];
+        // $data['slug'] = $data['name'];
         $vendor = SCMVVendor::create($data);
 
         $vendor->members()->attach(auth()->user());

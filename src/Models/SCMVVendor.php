@@ -6,6 +6,7 @@ use App\Models\User;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Rahat1994\SparkCommerce\Models\SCCategory;
+use Rahat1994\SparkCommerce\Models\SCCoupon;
 use Rahat1994\SparkCommerce\Models\SCProduct;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\HasMedia;
@@ -54,6 +55,11 @@ class SCMVVendor extends Model implements HasMedia
     public function sCCategories()
     {
         return $this->hasMany(SCCategory::class, 'vendor_id', 'id');
+    }
+
+    public function SCCoupons()
+    {
+        return $this->hasMany(SCCoupon::class, 'vendor_id', 'id');
     }
 
     // public function scmvShopCategory()
