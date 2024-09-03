@@ -21,8 +21,19 @@ class SCMVPublishRolesCommand extends Command
         $vendorManagerRole = config('sparkcommerce-multivendor.vendor_manager_role');
         $customerRole = config('sparkcommerce-multivendor.customer_role');
 
-        $this->publishAdminPermissionsAndRole();
-        $this->publishVendorOwnerPermissionsAndRole();
+        try {
+            $this->publishAdminPermissionsAndRole();
+            $this->publishVendorOwnerPermissionsAndRole();
+            $this->sendSuccessMessage();
+        } catch (\Throwable $th) {
+            $this->error('An error occurred while publishing roles.');
+        }
+
+    }
+
+    protected function sendSuccessMessage(): void
+    {
+        $this->components->info('Success! Roles have been published.');
     }
 
     protected function publishVendorOwnerPermissionsAndRole()

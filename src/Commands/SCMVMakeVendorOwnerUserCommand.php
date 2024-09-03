@@ -4,6 +4,7 @@ namespace Rahat1994\SparkcommerceMultivendor\Commands;
 
 use Filament\Commands\MakeUserCommand;
 use Filament\Facades\Filament;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Spatie\Permission\Models\Role;
 use Symfony\Component\Console\Attribute\AsCommand;
 
@@ -45,5 +46,10 @@ class SCMVMakeVendorOwnerUserCommand extends MakeUserCommand
         $this->sendSuccessMessage($user);
 
         return static::SUCCESS;
+    }
+
+    protected function sendSuccessMessage(Authenticatable $user): void
+    {
+        $this->components->info('Success! ' . ($user->getAttribute('email') . ' has been created.'));
     }
 }

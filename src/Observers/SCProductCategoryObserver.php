@@ -13,6 +13,10 @@ class SCProductCategoryObserver
      */
     public function creating(SCCategory $category): void
     {
+        // dd(Filament::getTenant());
+        if (Filament::getTenant() === null) {
+            return;
+        }
         $category->vendor_id = Filament::getTenant()->id;
     }
 }

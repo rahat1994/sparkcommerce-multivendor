@@ -20,9 +20,6 @@ class RegisterVendor extends RegisterTenant
         if (static::hasMacro('configureForm')) {
             return $this->configureForm($form);
         }
-
-        // return $this->configureForm($form);
-        // return $this->configureForm($form);
         return $form
             ->schema([
                 TextInput::make('name')
@@ -51,12 +48,8 @@ class RegisterVendor extends RegisterTenant
 
     protected function handleRegistration(array $data): SCMVVendor
     {
-        // TODO: Use Elequent sluggable package to create slugs.
-        // $data['slug'] = $data['name'];
         $vendor = SCMVVendor::create($data);
-
         $vendor->members()->attach(auth()->user());
-
         return $vendor;
     }
 }
