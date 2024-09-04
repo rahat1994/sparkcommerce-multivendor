@@ -22,6 +22,7 @@ class SCMVVendor extends Model implements HasMedia
         'user_id',
         'slug',
         'category',
+        'address',
         'contact_number',
     ];
 

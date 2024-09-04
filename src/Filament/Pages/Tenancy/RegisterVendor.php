@@ -17,8 +17,8 @@ class RegisterVendor extends RegisterTenant
 
     public function form(Form $form): Form
     {
-        if (static::hasMacro('configureForm')) {
-            return $this->configureForm($form);
+        if (static::hasMacro('configureVendorRegistrationForm')) {
+            return $this->configureVendorRegistrationForm($form);
         }
         return $form
             ->schema([
@@ -48,6 +48,9 @@ class RegisterVendor extends RegisterTenant
 
     protected function handleRegistration(array $data): SCMVVendor
     {
+        if (static::hasMacro('saveRegistrationData')) {
+            return $this->saveRegistrationData($data);
+        }
         $vendor = SCMVVendor::create($data);
         $vendor->members()->attach(auth()->user());
         return $vendor;
