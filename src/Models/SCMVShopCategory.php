@@ -4,10 +4,12 @@ namespace Rahat1994\SparkcommerceMultivendor\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class SCMVShopCategory extends Model
+class SCMVShopCategory extends Model implements HasMedia
 {
-    use Sluggable;
+    use Sluggable, InteractsWithMedia;
 
     protected $fillable = [
         'name',

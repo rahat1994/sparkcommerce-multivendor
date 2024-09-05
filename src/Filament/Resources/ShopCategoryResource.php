@@ -58,8 +58,10 @@ class ShopCategoryResource extends Resource
                     ->numeric()
                     ->label('Order')
                     ->placeholder('Order'),
-                SpatieMediaLibraryFileUpload::make('image')
-                    ->label('Image')
+                SpatieMediaLibraryFileUpload::make('category_image')
+                    ->collection('category_image')
+                    ->image()
+                    ->label('Category Image')
                     ->placeholder('Category Image'),
             ])->columns(1);
     }
