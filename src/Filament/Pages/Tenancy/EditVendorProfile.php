@@ -6,6 +6,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\Tenancy\EditTenantProfile;
+use Illuminate\Database\Eloquent\Model;
 
 class EditVendorProfile extends EditTenantProfile
 {
@@ -16,7 +17,6 @@ class EditVendorProfile extends EditTenantProfile
 
     public function form(Form $form): Form
     {
-
         if (static::hasMacro('configureVendorProfileEditForm')) {
             return $this->configureVendorProfileEditForm($form);
         }
@@ -45,5 +45,21 @@ class EditVendorProfile extends EditTenantProfile
                     ->email()
                     ->placeholder('johndoe@example.com'),
             ]);
+    }
+
+    public function handleRecordUpdate(Model $record, array $data): Model
+    {
+        if (static::hasMacro('saveProfileUpdatedData')) {
+            return $this->saveProfileUpdatedData($record, $data);
+        }
+        return $record;
+    }
+
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        if (static::hasMacro('mutateVendorProfileDataBeforeEditFormFieldFill')) {
+            return $this->mutateVendorProfileDataBeforeEditFormFieldFill($data);
+        }
+        return $data;
     }
 }

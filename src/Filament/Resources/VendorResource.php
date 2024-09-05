@@ -102,10 +102,14 @@ class VendorResource extends Resource
                     ->icon('heroicon-c-arrow-up-circle')
                     ->action(function (SCMVVendor $record) {
                         if ($record->meta !== null && isset($record->meta['is_top_vendor']) && $record->meta['is_top_vendor'] === 0) {
-                            $record->meta['is_top_vendor'] = 1;
+                            $tempMeta = $record->meta;
+                            $tempMeta['is_top_vendor'] = 1;
+                            $record->meta = $tempMeta;
                             $record->save();
                         } else if ($record->meta !== null && !isset($record->meta['is_top_vendor'])) {
-                            $record->meta = ['is_top_vendor' => 1];
+                            $tempMeta = $record->meta;
+                            $tempMeta['is_top_vendor'] = 1;
+                            $record->meta = $tempMeta;
                             $record->save();
                         } elseif ($record->meta === null) {
                             $record->meta = ['is_top_vendor' => 1];

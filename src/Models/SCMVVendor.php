@@ -3,6 +3,7 @@
 namespace Rahat1994\SparkcommerceMultivendor\Models;
 
 use App\Models\User;
+use Arr;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Rahat1994\SparkCommerce\Models\SCCategory;
@@ -67,6 +68,11 @@ class SCMVVendor extends Model implements HasMedia
     // {
     //     $this->belongsTo(SCMVShopCategory::class, 'category', 'id');
     // }
+
+    public function getMetaValue($key, $default = null)
+    {
+        return Arr::get($this->meta, $key, $default);
+    }
 
     public function sluggable(): array
     {
