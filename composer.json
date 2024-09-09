@@ -22,13 +22,15 @@
     ],
     "require": {
         "php": "^8.1",
-        "cviebrock/eloquent-sluggable": "*",
         "binafy/laravel-cart": "^1.0",
+        "cknow/laravel-money": "^8.1",
+        "cviebrock/eloquent-sluggable": "*",
         "filament/filament": "^3.0",
+        "filament/spatie-laravel-media-library-plugin": "^3.2",
         "spatie/laravel-package-tools": "^1.15.0",
         "spatie/laravel-permission": "^6.7",
         "spatie/macroable": "^2.0",
-        "filament/spatie-laravel-media-library-plugin": "^3.2"
+        "rahat1994/sparkcommerce": "*"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
@@ -76,6 +78,12 @@
             "aliases": {
                 "SparkcommerceMultivendor": "Rahat1994\\SparkcommerceMultivendor\\Facades\\SparkcommerceMultivendor"
             }
+        }
+    },
+    "repositories": {
+        "sparkcommerce": {
+            "type": "path",
+            "url": "../sparkcommerce"
         }
     },
     "minimum-stability": "dev",
