@@ -2,6 +2,7 @@
 
 namespace Rahat1994\SparkcommerceMultivendor;
 
+use Filament\Facades\Filament;
 use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
 use Filament\Support\Assets\Css;
@@ -126,6 +127,9 @@ class SparkcommerceMultivendorServiceProvider extends PackageServiceProvider
 
         SCCoupon::resolveRelationUsing('sCMVVendor', function ($review) {
             return $review->belongsTo(SCMVVendor::class, 'vendor_id', 'id');
+        });
+        SCProduct::addGlobalScope('vendor', function ($query) {            
+            return $query->where('vendor_id', Filament::getTenant()->id);
         });
 
         SCCategory::observe(Observers\SCProductCategoryObserver::class);
