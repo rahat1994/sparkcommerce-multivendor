@@ -128,9 +128,9 @@ class SparkcommerceMultivendorServiceProvider extends PackageServiceProvider
         SCCoupon::resolveRelationUsing('sCMVVendor', function ($review) {
             return $review->belongsTo(SCMVVendor::class, 'vendor_id', 'id');
         });
-        SCProduct::addGlobalScope('vendor', function ($query) {            
-            return $query->where('vendor_id', Filament::getTenant()->id);
-        });
+        // SCProduct::addGlobalScope('vendor', function ($query) {            
+        //     return $query->where('vendor_id', Filament::getTenant()->id);
+        // });
 
         SCCategory::observe(Observers\SCProductCategoryObserver::class);
         SCMVVendor::observe(Observers\SCMVVendorObserver::class);
