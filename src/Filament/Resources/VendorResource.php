@@ -17,6 +17,7 @@ use Rahat1994\SparkcommerceMultivendor\Filament\Resources\VendorResource\Relatio
 use Rahat1994\SparkcommerceMultivendor\Models\SCMVShopCategory;
 use Rahat1994\SparkcommerceMultivendor\Models\SCMVVendor;
 
+
 class VendorResource extends Resource
 {
     protected static ?string $model = SCMVVendor::class;
@@ -49,6 +50,10 @@ class VendorResource extends Resource
 
     public static function form(Form $form): Form
     {
+        if (static::hasMacro('configureVendorRegistrationForm')) {
+            return $form->schema(static::configureVendorRegistrationForm($form));
+        }
+
         return $form
             ->schema([
                 TextInput::make('name')
@@ -81,8 +86,7 @@ class VendorResource extends Resource
             ->columns([
                 TextColumn::make('name'),
                 TextColumn::make('email'),
-                TextColumn::make('contact_number'),
-
+                TextColumn::make('contact_number')
             ])
             ->filters([
                 //
