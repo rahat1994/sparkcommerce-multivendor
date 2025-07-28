@@ -44,7 +44,29 @@ class PayoutRequestResource extends Resource
     {
         return $form
             ->schema([
-                //
+                // UK Bank Information Section
+                \Filament\Forms\Components\Section::make(__('Payout Details'))
+                    ->description(__('Please provide your UK bank details for payout.'))
+                    ->schema([
+                                        // Amount field
+                        \Filament\Forms\Components\TextInput::make('amount')
+                            ->required()->numeric()
+                            ->label(__('Amount')),
+                        \Filament\Forms\Components\TextInput::make('bank_account_name')
+                            ->label(__('Account Holder Name'))
+                            ->required(),
+                        \Filament\Forms\Components\TextInput::make('bank_account_number')
+                            ->label(__('Account Number'))
+                            ->required()
+                            ->maxLength(8),
+                        \Filament\Forms\Components\TextInput::make('bank_sort_code')
+                            ->label(__('Sort Code'))
+                            ->required()
+                            ->maxLength(8),
+                        \Filament\Forms\Components\TextInput::make('bank_name')
+                            ->label(__('Bank Name'))
+                            ->required(),
+                    ]),
             ]);
     }
 
@@ -52,35 +74,38 @@ class PayoutRequestResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')
-                    ->formatStateUsing(fn (string $state): string => $state),
+                TextColumn::make('amount')
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                Tables\Actions\ViewAction::make()->mutateRecordDataUsing(function (array $data): array {
+
+                    $bankInfo = $data['bank_info'] ?? [];
+                    $data['bank_account_name'] = $bankInfo['bank_account_name'] ?? '';
+                    $data['bank_account_number'] = $bankInfo['bank_account_number'] ?? '';
+                    $data['bank_sort_code'] = $bankInfo['bank_sort_code'] ?? '';
+                    $data['bank_name'] = $bankInfo['bank_name'] ?? '';
+                    unset($data['bank_info']);
+
+                    return $data;
+                }),
             ]);
     }
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListPayoutRequest::route('/'),
-            'create' => Pages\CreatePayoutRequest::route('/create'),
-            'edit' => Pages\EditPayoutRequest::route('/{record}/edit'),
+            'create' => Pages\CreatePayoutRequest::route('/create')
         ];
     }
+
+
 }

@@ -62,8 +62,8 @@ class SparkcommerceMultivendorPlugin implements Plugin
             return $panel->resources(
                 $this->getResources()
             )
-                ->tenant(SCMVVendor::class, slugAttribute: 'slug')
-                ->tenantRegistration(RegisterVendor::class);
+                ->tenant(SCMVVendor::class, slugAttribute: 'slug');
+                // ->tenantRegistration(RegisterVendor::class);
         }
     }
 
@@ -82,7 +82,9 @@ class SparkcommerceMultivendorPlugin implements Plugin
             ];
         }
 
-        return [];
+        return [
+            PayoutRequestResource::class,
+        ];
     }
 
     public function boot(Panel $panel): void {}

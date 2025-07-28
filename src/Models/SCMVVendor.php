@@ -11,7 +11,7 @@ use Rahat1994\SparkCommerce\Models\SCCoupon;
 use Rahat1994\SparkCommerce\Models\SCProduct;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\HasMedia;
-
+use Rahat1994\SparkcommerceMultivendor\Models\SCMVPayoutRequest;
 class SCMVVendor extends Model implements HasMedia
 {
     use Sluggable, InteractsWithMedia;
@@ -72,6 +72,11 @@ class SCMVVendor extends Model implements HasMedia
     public function getMetaValue($key, $default = null)
     {
         return Arr::get($this->meta, $key, $default);
+    }
+
+    public function sCMVPayoutRequests()
+    {
+        return $this->hasMany(SCMVPayoutRequest::class, 'vendor_id', 'id');
     }
 
     public function sluggable(): array
