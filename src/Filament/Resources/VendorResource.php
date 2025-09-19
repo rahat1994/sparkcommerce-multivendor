@@ -6,6 +6,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Illuminate\Support\Arr;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -84,16 +85,77 @@ class VendorResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
-                TextColumn::make('email'),
-                TextColumn::make('contact_number')
+                TextColumn::make('name')->searchable(),
+                TextColumn::make('email')->searchable(),
+                TextColumn::make('contact_number')->searchable()
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Action::make('Disable Vendor')
+                    ->color('danger')
+                    ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.vendor.disable_vendor'))
+                    ->visible(function (SCMVVendor $record) {
+                        if ($record->meta === null) {
+                            return true;
+                        } elseif ($record->meta !== null && !isset($record->meta['disable_vendor']) || $record->meta['disable_vendor'] === 0) {
+                            return true;
+                        }
+                    })
+                    ->requiresConfirmation()
+                    ->icon('heroicon-c-inbox-arrow-down')
+                    ->action(function (SCMVVendor $record) {
+                        if ($record->meta !== null && isset($record->meta['disable_vendor']) && $record->meta['disable_vendor'] === 0) {
+                            $tempMeta = $record->meta;
+                            $tempMeta['disable_vendor'] = 1;
+                            $record->meta = $tempMeta;
+                            $record->save();
+                        } else if ($record->meta !== null && !isset($record->meta['disable_vendor'])) {
+                            $tempMeta = $record->meta;
+                            $tempMeta['disable_vendor'] = 1;
+                            $record->meta = $tempMeta;
+                            $record->save();
+                        } elseif ($record->meta === null) {
+                            $record->meta = ['disable_vendor' => 1];
+                            $record->save();
+                        }
+
+                        Notification::make()
+                            ->title('Vendor Updated')
+                            ->success()
+                            ->send();
+                }),
+                Action::make('Enable Vendor')
+                    ->color('success')
+                    ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.vendor.enable_vendor'))
+                    ->visible(function (SCMVVendor $record) {
+
+                        $disabled = Arr::get($record->meta, 'disable_vendor', 0);
+                        if ($record->meta === null) {
+                            return false;
+                        } elseif ($record->meta !== null && $disabled === 1) {
+                            return true;
+                        }
+                    })
+                    ->requiresConfirmation()
+                    ->icon('heroicon-c-chevron-double-up')
+                    ->action(function (SCMVVendor $record) {
+                        if ($record->meta !== null && isset($record->meta['disable_vendor']) && $record->meta['disable_vendor'] === 1) {
+                            $tempMeta = $record->meta;
+                            unset($tempMeta['disable_vendor']);
+                            $record->meta = $tempMeta;
+                            $record->save();
+                        }
+
+                        Notification::make()
+                            ->title('Vendor Updated')
+                            ->success()
+                            ->send();
+                }),
                 Action::make('Make Top Vendor')
+                    ->color('success')
                     ->label(__('sparkcommerce-multivendor::sparkcommerce-multivendor.resource.vendor.make_top_vendor'))
                     ->visible(function (SCMVVendor $record) {
                         if ($record->meta === null) {

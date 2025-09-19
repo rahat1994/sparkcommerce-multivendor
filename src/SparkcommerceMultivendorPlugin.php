@@ -73,7 +73,6 @@ class SparkcommerceMultivendorPlugin implements Plugin
         if ($this->getPanelType() == PanelType::Admin) {
             return [
                 VendorResource::class,
-                VendorRequestResource::class,
                 PayoutRequestResource::class,
                 SupportTicketResource::class,
                 ShopCategoryResource::class,

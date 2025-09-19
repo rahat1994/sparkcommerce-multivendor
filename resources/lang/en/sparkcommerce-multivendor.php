@@ -112,6 +112,8 @@ return [
             'navigation_group' => 'Multi Vendor',
             'navigation' => 'Vendors',
             'make_top_vendor' => 'Make Top Vendor',
+            'disable_vendor' => 'Disable',
+            'enable_vendor' => 'Enable',
             'logo' => 'Logo',
             'banner' => 'Banner',
             'demote_top_vendor' => 'Demote Top Vendor',

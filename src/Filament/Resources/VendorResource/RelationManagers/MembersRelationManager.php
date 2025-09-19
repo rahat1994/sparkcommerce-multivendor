@@ -12,6 +12,7 @@ use Filament\Tables\Actions\DetachAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Rahat1994\SparkCommerce\Filament\Resources\UserResource;
 
 class MembersRelationManager extends RelationManager
 {
@@ -20,9 +21,9 @@ class MembersRelationManager extends RelationManager
 
     public function form(Form $form): Form
     {
-        return $form->schema([
-            TextInput::make('name'),
-        ]);
+        return $form->schema(
+            UserResource::getUserFields()
+        );
     }
 
     public function table(Table $table): Table
