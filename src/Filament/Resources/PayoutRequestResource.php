@@ -57,12 +57,10 @@ class PayoutRequestResource extends Resource
                             ->required(),
                         \Filament\Forms\Components\TextInput::make('bank_account_number')
                             ->label(__('Account Number'))
-                            ->required()
-                            ->maxLength(8),
+                            ->required(),
                         \Filament\Forms\Components\TextInput::make('bank_sort_code')
                             ->label(__('Sort Code'))
-                            ->required()
-                            ->maxLength(8),
+                            ->required(),
                         \Filament\Forms\Components\TextInput::make('bank_name')
                             ->label(__('Bank Name'))
                             ->required(),
