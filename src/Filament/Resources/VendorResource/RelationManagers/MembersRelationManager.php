@@ -13,6 +13,7 @@ use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Rahat1994\SparkCommerce\Filament\Resources\UserResource;
+use STS\FilamentImpersonate\Tables\Actions\Impersonate;
 
 class MembersRelationManager extends RelationManager
 {
@@ -33,6 +34,7 @@ class MembersRelationManager extends RelationManager
             ->actions([
                 DetachAction::make(),
                 ViewAction::make(),
+                Impersonate::make(),
             ])
             ->columns([
                 TextColumn::make('name'),
